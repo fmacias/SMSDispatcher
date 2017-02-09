@@ -17,6 +17,7 @@ return [
     'Zend\Cache',
     'Zend\Router',
     'Zend\Validator',
-    'ZFT',
-    'Application',
+    'SMSModel',
+    'SMS',
+    'SMS_API_Services',
 ];

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true">
     <testsuites>
-        <testsuite name="ZendSkeletonApplication Test Suite">
-            <directory>./module/Application/test</directory>
+        <testsuite name="SMS Entities Test Suite">
+            <directory>./module/SMS/test</directory>
+        </testsuite>
+        <testsuite name="SMS Model Entities Test Suite">
+            <directory>./module/SMSModel/test</directory>
+        </testsuite>
+        <testsuite name="SMS API Services Test Suite">
+            <directory>./module/SMS_API_Services/test</directory>
         </testsuite>
     </testsuites>
 </phpunit>

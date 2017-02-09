@@ -25,13 +25,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Application\\": "module/Application/src/",
-            "ZFT\\": "module/ZFT/src/"
+            "SMS_API_Services\\": "module/SMS_API_Services/src/",
+            "SMSModel\\": "module/SMSModel/src/",
+            "SMS\\": "module/SMS/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "SMS_API_ServicesTest\\": "module/SMS_API_Services/test/",
+            "SMSModelTest\\": "module/SMSModel/test/",
+            "SMSTest\\": "module/SMS/test/"
         }
     },
     "extra": [],
