@@ -1,12 +1,35 @@
-# ZendSkeletonApplication
+# SMSDispatcher
 
 ## Introduction
 
-This is a skeleton application using the Zend Framework MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with Zend Framework.
+Based on Zend 3.
 
-## Installation using Composer
+This is a dummy implementation that provides a service to send SMS messages and to query data.
+
+You will find the following:
+
+1. Services that provides data as Json and XML.
+2. Implement the Repository Pattern and single responsibility principle.
+
+   Modules:
+   
+       SMSModel SmsRepository
+                This implementation has not depencencies with Zend
+                and could be used also independently with any other 
+                framework like Symphony.
+                
+       SMS      Extends the functionality of SMSModel
+                Creates the Factories in a proper way.
+                
+       SMS_API_SERVICES
+                Builds the Controllers.
+                ViewModel is being injected over a factory into each controller.
+                SmsRepository is being injected also into each controller.
+   Database:
+       
+       Dump provided at Dump folder.
+
+## Installation
 
 The easiest way to create a new Zend Framework project is to use
 [Composer](https://getcomposer.org/).  If you don't have it already installed,
