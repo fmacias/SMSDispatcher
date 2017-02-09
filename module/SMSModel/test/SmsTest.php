@@ -6,7 +6,7 @@ use SMSModelTest\Sms\SmsRepository as SmsRespositoryTest;
 use SMSModel\Sms;
 
 class SmsTest extends \PHPUnit_Framework_TestCase{
-    public function testCanCreateUserObject(){
+    public function testCanCreateSmsObject(){
         $sms = new SmsRespositoryTest\MockSms();
         $this->assertInstanceOf(Sms\SmsInterface::class, $sms);
     }

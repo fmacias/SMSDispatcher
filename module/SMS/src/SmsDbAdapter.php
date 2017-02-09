@@ -1,11 +1,11 @@
 <?php
 
-namespace SMS\Model;
+namespace SMS;
 
 use SMSModel\Sms\SmsRepository\DataPersistanceInterface;
 use Zend\Db\Adapter\Adapter;
 
-class SmsDbConnector implements DataPersistanceInterface
+class SmsDbAdapter implements DataPersistanceInterface
 {
 
     /**

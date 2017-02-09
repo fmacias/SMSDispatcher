@@ -3,7 +3,7 @@
 namespace SMS;
 
 use SMSModel;
-class Sms extends SMSModel\Sms{
+class Message extends SMSModel\Sms{
 
     const dummyFile= '/tmp/sentSms.log';
 
