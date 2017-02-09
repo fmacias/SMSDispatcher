@@ -1,5 +1,5 @@
 {
-    "name": "fmacias/sms-dispatcher",
+    "name": "fmacias/sms-dispatcher based on skeleton application",
     "description": "Service to cover the workflow for sending sms messages",
     "type": "project",
     "license": "BSD-3-Clause",

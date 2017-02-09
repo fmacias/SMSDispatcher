@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Based on Zend 3.
+Based on Zend 3 Skeleton Application.
 
 This is a dummy implementation that provides a service to send SMS messages and to query data.
 
@@ -31,15 +31,12 @@ You will find the following:
 
 ## Installation
 
-The easiest way to create a new Zend Framework project is to use
-[Composer](https://getcomposer.org/).  If you don't have it already installed,
-then please install as per the [documentation](https://getcomposer.org/doc/00-intro.md).
+1. Get the project from github
+2. at the project folder run
 
-To create your new Zend Framework project:
-
-```bash
-$ composer create-project -sdev zendframework/skeleton-application path/to/install
-```
+   $composer install
+3 Import the database.
+  Dump available at dump folder.
 
 Once installed, you can test it out immediately using PHP's built-in web server:
 
@@ -49,6 +46,7 @@ $ php -S 0.0.0.0:8080 -t public/ public/index.php
 # OR use the composer alias:
 $ composer serve
 ```
+
 
 This will start the cli-server on port 8080, and bind it to all network
 interfaces. You can then visit the site at http://localhost:8080/
@@ -100,60 +98,6 @@ If you need to make local modifications for the PHPUnit test setup, copy
 precedence over the former when running tests, and is ignored by version
 control. (If you want to make the modifications permanent, edit the
 `phpunit.xml.dist` file.)
-
-## Using Vagrant
-
-This skeleton includes a `Vagrantfile` based on ubuntu 16.04, and using the
-ondrej/php PPA to provide PHP 7.0. Start it up using:
-
-```bash
-$ vagrant up
-```
-
-Once built, you can also run composer within the box. For example, the following
-will install dependencies:
-
-```bash
-$ vagrant ssh -c 'composer install'
-```
-
-While this will update them:
-
-```bash
-$ vagrant ssh -c 'composer update'
-```
-
-While running, Vagrant maps your host port 8080 to port 80 on the virtual
-machine; you can visit the site at http://localhost:8080/
-
-> ### Vagrant and VirtualBox
->
-> The vagrant image is based on ubuntu/xenial64. If you are using VirtualBox as
-> a provider, you will need:
->
-> - Vagrant 1.8.5 or later
-> - VirtualBox 5.0.26 or later
-
-For vagrant documentation, please refer to [vagrantup.com](https://www.vagrantup.com/)
-
-## Using docker-compose
-
-This skeleton provides a `docker-compose.yml` for use with
-[docker-compose](https://docs.docker.com/compose/); it
-uses the `Dockerfile` provided as its base. Build and start the image using:
-
-```bash
-$ docker-compose up -d --build
-```
-
-At this point, you can visit http://localhost:8080 to see the site running.
-
-You can also run composer from the image. The container environment is named
-"zf", so you will pass that value to `docker-compose run`:
-
-```bash
-$ docker-compose run zf composer install
-```
 
 ## Web server setup
 
