@@ -58,14 +58,20 @@ class SmsDbAdapter implements DataPersistanceInterface
     /**
      * @param $asocciativeArrayOfKeyValuesIndexedByColumnName
      * @return bool
+     * @throws \Exception
      */
     public function persistSMS($asocciativeArrayOfKeyValuesIndexedByColumnName)
     {
-        $columns = implode(',', $this->qi(array_keys($asocciativeArrayOfKeyValuesIndexedByColumnName)));
-        $values = implode(',', $this->qtvAll(array_values($asocciativeArrayOfKeyValuesIndexedByColumnName)));
-        $queryString = sprintf('INSERT INTO `Sms` (%s) values (%s)', $columns, $values);
-        $statement = $this->_zendDbAdapter->createStatement($queryString);
-        return $statement->execute()->isQueryResult();
+        try {
+            $columns = implode(',', $this->qi(array_keys($asocciativeArrayOfKeyValuesIndexedByColumnName)));
+            $values = implode(',', $this->qtvAll(array_values($asocciativeArrayOfKeyValuesIndexedByColumnName)));
+            $queryString = sprintf('INSERT INTO `Sms` (%s) values (%s)', $columns, $values);
+            $statement = $this->_zendDbAdapter->createStatement($queryString);
+            $statement->execute();
+        }catch (\Exception $e){
+            throw new \Exception('SmsDbAdapter::persistSMS() fails. '.$e->getMessage());
+        }
+        return true;
     }
 
     /**
@@ -77,12 +83,16 @@ class SmsDbAdapter implements DataPersistanceInterface
      */
     public function querySentSms($dateTimeFrom, $dateTimeTo, $skip, $take)
     {
+        $ouput=[];
         $sql = 'SELECT `dateTo` as `DateTime`, `MobileCountryCode` as `MCC`,`c`.`Name` as `CountryName`,' .
             '`Sender` as `From`,`Receiver` as `To`,' .
             '`PricePerSms` FROM `Sms` s INNER JOIN `Countries` `c` ON  (`s`.`ReceiverCountryId`=`c`.`id`)' .
             ' WHERE `IsSent`=1 AND `dateTo`>=' . $this->qtv($dateTimeFrom) .
             ' AND `dateTo` <=' . $this->qtv($dateTimeTo) . ' LIMIT ' . $skip . ',' . $take;
-        return $this->_zendDbAdapter->query($sql, [])->toArray();
+        $result=$this->_zendDbAdapter->query($sql, []);
+
+        if ($result->valid()) $ouput=$result->toArray();
+        return $ouput;
     }
 
     /**

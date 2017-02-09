@@ -7,11 +7,16 @@
 
 namespace SMS_API_Services;
 
+use SMS_API_Services\Controller\Factories\JsonFactory;
+use SMS_API_Services\Controller\Factories\ViewFactory;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\View\Model\JsonModel;
+use Zend\View\Model\ViewModel;
 
-class Module implements ConfigProviderInterface, BootstrapListenerInterface
+class Module implements ConfigProviderInterface, BootstrapListenerInterface, ServiceProviderInterface
 {
     const VERSION = '3.0.2dev';
 
@@ -24,5 +29,15 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface
     {
         //Each time the page loads
         return;
+    }
+
+    public function getServiceConfig()
+    {
+        return [
+            'factories'=>[
+                ViewModel::class=>ViewFactory::class,
+                JsonModel::class=>JsonFactory::class
+            ]
+        ];
     }
 }

@@ -19,8 +19,8 @@ class Module implements ServiceProviderInterface
         return [
             'factories' => [
                 Message::class => InvokableFactory::class,
-                SmsDbAdapter::class => SmsDbAdapterFactory::class,
-                SmsRepository::class => SmsRepositoryFactory::class,
+                SmsDbAdapter::class => Message\SmsDbAdapterFactory::class,
+                SmsRepository::class => Message\SmsRepositoryFactory::class,
                 Adapter::class=>AdapterServiceFactory::class
             ]
         ];

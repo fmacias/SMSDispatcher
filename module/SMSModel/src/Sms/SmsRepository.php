@@ -2,6 +2,7 @@
 
 namespace SMSModel\Sms;
 
+use phpDocumentor\Reflection\Types\String_;
 use SMSModel\Sms\SmsRepository as SmsRepositoryDepencencies;
 
 /**
@@ -32,6 +33,15 @@ class SmsRepository implements SmsRepositoryDepencencies\SmsRepositoryInterface
         $this->_smsResolver = $sms;
     }
 
+    private function indexCountriesByMCC($countries)
+    {
+        $countriesByMCC=array();
+        foreach($countries as $index => $rowContentObject)
+        {
+            $countriesByMCC[$rowContentObject['MobileCountryCode']]=$rowContentObject;
+        }
+        return $countriesByMCC;
+    }
     /**
      * @param $receiver
      * @return int
@@ -89,7 +99,12 @@ class SmsRepository implements SmsRepositoryDepencencies\SmsRepositoryInterface
      */
     public function getSentSms($dateTimeFrom, $dateTimeTo, $skip, $take)
     {
-        return $this->_connector->querySentSms($dateTimeFrom, $dateTimeTo, $skip, $take);
+        return $this->_connector->querySentSms(
+            (string)$dateTimeFrom,
+            (string)$dateTimeTo,
+            (int)$skip,
+            (int)$take
+        );
     }
 
     /**
@@ -100,6 +115,10 @@ class SmsRepository implements SmsRepositoryDepencencies\SmsRepositoryInterface
      */
     public function getStatistics($dateFrom, $dateTo, $mccList)
     {
-        return $this->_connector->queryStatistics($dateFrom, $dateTo, $mccList);
+        return $this->_connector->queryStatistics(
+            (string)$dateFrom,
+            (string)$dateTo,
+            (string)$mccList
+        );
     }
 }

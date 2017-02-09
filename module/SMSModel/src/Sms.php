@@ -38,7 +38,7 @@ abstract class Sms extends Sms\State implements Sms\SmsInterface
     {
         $this->setState($this::NotSent);
         $this->dispatch();
-        $this->_enumState->setState($this::Sent);
+        $this->setState($this::Sent);
         $this->_data = [
             'Sender' => $from,
             'Receiver' => $to,

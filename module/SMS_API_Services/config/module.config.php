@@ -34,11 +34,126 @@ return [
                     ],
                 ],
             ],
+            'sendSmsJson' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/sms/send.json[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\JsonController::class,
+                        'action' => 'sendSmsJson',
+                    ]
+                ]
+            ],
+            'getCountriesJson' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/countries.json',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\JsonController::class,
+                        'action' => 'getCountriesJson',
+                    ]
+                ]
+            ],
+            'sentJson' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/sms/sent.json[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\JsonController::class,
+                        'action' => 'sentJson',
+                    ]
+                ]
+            ],
+            'statisticsJson' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/statistics.json[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\JsonController::class,
+                        'action' => 'statisticsJson',
+                    ]
+                ]
+            ],
+            'sendSmsXml' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/sms/send.xml[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\XmlController::class,
+                        'action' => 'sendSmsXml',
+                    ]
+                ]
+            ],
+            'getCountriesXml' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/countries.xml',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\XmlController::class,
+                        'action' => 'getcountriesXml',
+                    ]
+                ]
+            ],
+            'sentXml' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/sms/sent.xml[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\XmlController::class,
+                        'action' => 'sentXml',
+                    ]
+                ]
+            ],
+            'statisticsXml' => [
+                'type' => 'segment',
+                'options' => [
+                    'route' => '/statistics.xml[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0,9]+'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\XmlController::class,
+                        'action' => 'statisticsXml',
+                    ]
+                ]
+            ]
+
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\JsonController::class=> Controller\Factories\JsonControllerFactory::class,
+            Controller\XmlController::class=> Controller\Factories\ViewControllerFactory::class
         ],
     ],
     'view_manager' => [
@@ -52,7 +167,10 @@ return [
             'sms_api_services/index/index' => __DIR__ . '/../view/sms_api_services/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
-        ],
+
+        ],'strategies'=>array(
+            'ViewJsonStrategy'
+        ),
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
