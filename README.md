@@ -11,19 +11,21 @@ You will find the following:
 1. Services that provides data as Json and XML.
 2. Implements the Repository Pattern and single responsibility principle.
 
-   Modules:
-   
+###   Modules:
        SMSModel 
+       
                 SmsRepository
                 This implementation has not depencencies with Zend
                 and could be used also independently with any other 
                 framework like Symphony.
                 
-       SMS      
+       SMS
+             
                 Extends the functionality of SMSModel
                 Creates the Factories in a proper way.
                 
        SMS_API_SERVICES
+       
                 Builds the Controllers.
                 ViewModel is being injected over a factory into each controller.
                 SmsRepository is being injected also into each controller.
