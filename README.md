@@ -13,12 +13,14 @@ You will find the following:
 
    Modules:
    
-       SMSModel SmsRepository
+       SMSModel 
+                SmsRepository
                 This implementation has not depencencies with Zend
                 and could be used also independently with any other 
                 framework like Symphony.
                 
-       SMS      Extends the functionality of SMSModel
+       SMS      
+                Extends the functionality of SMSModel
                 Creates the Factories in a proper way.
                 
        SMS_API_SERVICES
@@ -32,15 +34,17 @@ You will find the following:
 ## Installation
 
 1. Get the project from github
-``` git clone
+```
     $git clone https://github.com/fmacias/SMSDispatcher
 ```
-2. at the project folder run
-
+2. At the project folde
+```
    $composer install
-   
+``` 
 3. Import the database.
-   Dump available at dump folder.
+```
+  Dump available at dump folder.
+```
 
 Once installed, you can test it out immediately using PHP's built-in web server:
 
@@ -50,7 +54,6 @@ $ php -S 0.0.0.0:8080 -t public/ public/index.php
 # OR use the composer alias:
 $ composer serve
 ```
-
 
 This will start the cli-server on port 8080, and bind it to all network
 interfaces. You can then visit the site at http://localhost:8080/
