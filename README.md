@@ -17,7 +17,7 @@ You will find the following:
                 SmsRepository
                 This implementation has not depencencies with Zend
                 and could be used also independently with any other 
-                framework like Symphony.
+                framework like Symfony.
                 
        SMS
              
