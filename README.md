@@ -33,13 +33,14 @@ You will find the following:
 
 1. Get the project from github
 ``` git clone
-
+    $git clone https://github.com/fmacias/SMSDispatcher
 ```
 2. at the project folder run
 
    $composer install
-3 Import the database.
-  Dump available at dump folder.
+   
+3. Import the database.
+   Dump available at dump folder.
 
 Once installed, you can test it out immediately using PHP's built-in web server:
 
@@ -109,85 +110,31 @@ control. (If you want to make the modifications permanent, edit the
 To setup apache, setup a virtual host to point to the public/ directory of the
 project and you should be ready to go! It should look something like below:
 
+Mode Rewrite is required
+```
+$sudo a2enmod rewrite
+```
 ```apache
 <VirtualHost *:80>
-    ServerName zfapp.localhost
-    DocumentRoot /path/to/zfapp/public
-    <Directory /path/to/zfapp/public>
-        DirectoryIndex index.php
-        AllowOverride All
-        Order allow,deny
-        Allow from all
-        <IfModule mod_authz_core.c>
-        Require all granted
-        </IfModule>
-    </Directory>
+        ServerName Zend-ResFull-Json-Xml.localhost
+        DocumentRoot /[Your Path]/SMSDispatcher/public
+        SetEnv APPLICATION_ENV "development"
+        <Directory /[Your Path]/SMSDispatcher/public>
+                DirectoryIndex index.php
+                AllowOverride All
+                Require all granted
+        </Directory>
 </VirtualHost>
 ```
-
-### Nginx setup
-
-To setup nginx, open your `/path/to/nginx/nginx.conf` and add an
-[include directive](http://nginx.org/en/docs/ngx_core_module.html#include) below
-into `http` block if it does not already exist:
-
-```nginx
-http {
-    # ...
-    include sites-enabled/*.conf;
-}
+Enable the configuration
 ```
-
-
-Create a virtual host configuration file for your project under `/path/to/nginx/sites-enabled/zfapp.localhost.conf`
-it should look something like below:
-
-```nginx
-server {
-    listen       80;
-    server_name  zfapp.localhost;
-    root         /path/to/zfapp/public;
-
-    location / {
-        index index.php;
-        try_files $uri $uri/ @php;
-    }
-
-    location @php {
-        # Pass the PHP requests to FastCGI server (php-fpm) on 127.0.0.1:9000
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_param  SCRIPT_FILENAME /path/to/zfapp/public/index.php;
-        include fastcgi_params;
-    }
-}
+a2ensite [yourfilename].conf
 ```
-
-Restart the nginx, now you should be ready to go!
-
-## QA Tools
-
-The skeleton does not come with any QA tooling by default, but does ship with
-configuration for each of:
-
-- [phpcs](https://github.com/squizlabs/php_codesniffer)
-- [phpunit](https://phpunit.de)
-
-Additionally, it comes with some basic tests for the shipped
-`Application\Controller\IndexController`.
-
-If you want to add these QA tools, execute the following:
-
-```bash
-$ composer require --dev phpunit/phpunit squizlabs/php_codesniffer zendframework/zend-test
+Add mapp your host name at
 ```
-
-We provide aliases for each of these tools in the Composer configuration:
-
-```bash
-# Run CS checks:
-$ composer cs-check
-# Fix CS errors:
-$ composer cs-fix
-# Run PHPUnit tests:
-$ composer test
+/etc/hosts
+```
+Reload Apache
+```
+$service apache2 reload
 ```
