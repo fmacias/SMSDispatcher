@@ -15,7 +15,7 @@ class Message extends SMSModel\Sms{
     protected function dispatch($from, $to, $text)
     {
         file_put_contents(
-            $this::dummyFile,
+            self::dummyFile,
             sprintf('%s Sms sent From %s to %s. Message: %s', date("Y-m-d H:i:s"), $from, $to, $text),
             FILE_APPEND
         );

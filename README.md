@@ -2,14 +2,14 @@
 
 ## Introduction
 
-Based on Zend 3 Skeleton Application.
+Based on Zend 3.0.2-dev
 
-This is a dummy implementation that provides a service to send SMS messages and to query data.
+This is a dummy implementation that provides a service to send SMS messages and to query related data.
 
 You will find the following:
 
 1. Services that provides data as Json and XML.
-2. Implement the Repository Pattern and single responsibility principle.
+2. Implements the Repository Pattern and single responsibility principle.
 
    Modules:
    
@@ -32,6 +32,9 @@ You will find the following:
 ## Installation
 
 1. Get the project from github
+``` git clone
+
+```
 2. at the project folder run
 
    $composer install
