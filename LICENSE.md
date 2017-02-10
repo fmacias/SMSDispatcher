@@ -1,4 +1,5 @@
-Copyright (c) 2005-2016, Zend Technologies USA, Inc.
+Copyright (c) 2015-2016, Fernando Macias Ruano
+fmaciasruano@gmail.com
 
 All rights reserved.
 
