@@ -2,7 +2,6 @@
 
 namespace SMSModel\Sms;
 
-use phpDocumentor\Reflection\Types\String_;
 use SMSModel\Sms\SmsRepository as SmsRepositoryDepencencies;
 
 /**
